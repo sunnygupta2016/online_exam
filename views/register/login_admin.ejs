@@ -1,0 +1,32 @@
+<% include ../partials/header %>
+
+	<div class="containerlogin">
+		
+		<div class="form-container1">
+
+			<div class="adminlogin"
+			<h1>Admin Login</h1>
+			</div>
+
+			<form action="/login/admin_login" method="POST">
+				
+				<div class="input-group">
+					<label for="username">Username</label>
+					<input name="username" type="text" id="username" placeholder="Enter Username">
+				</div>
+
+				<div class="input-group">
+					<label for="password">Password</label>
+					<input name="password" type="password" id="password" placeholder="Enter Password">
+				</div>
+
+				<button type="submit" class="btn-submit">Login</button>
+
+			</form>
+
+		</div>
+
+	</div>
+
+
+<% include ../partials/footer %>

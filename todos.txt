@@ -1,0 +1,30 @@
+update db : db.schedules.update({}, {$set:{"hideResult" : false}}, false, true)
+
+# randomise questions, pck random out of questions
+# excel report
+# marks side by side with percenetage
+# hide result - update left
+# faculty user add via excel
+# Preview test before submit
+# fix student dashboard - ranking left
+# graph analytics performance over time - filter left
+# countdown timer fixed
+
+# report table reduce spacing
+# hidden tests show to admin
+# individual scheduling - done
+# add data to admin, faculty dashboard
+# marks in integer
+# Test duration option between from login and scheduling - DONE
+# add image upload to test - DONE
+# class based report and download - DONE
+# multi level test - result and view left - almost DONE - few form validations left - DONE
+# Add year and section based scheduling - section remains - DONE
+# add student xls no response - fixed
+# timing bug appears sometimes - IMPORTANT - DONE
+# form validation - almost DONE
+# active block - DONE
+# server auto restart - DONE
+# code snippet formatting - DONE
+# disable in phones - DONE
+# DELETE user - not required for now

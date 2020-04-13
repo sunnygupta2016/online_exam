@@ -1,0 +1,42 @@
+<% include ../partials/header %>
+
+  <div class="report-container">
+    
+          
+
+      
+            <h1>Delete Group</h1>
+       <table class="table">
+         <thead>
+          <tr>
+            <th>Name</th>
+            <th>Delete</th>
+             </tr>
+         </thead>
+         <tbody>
+            <%if(groups){%>
+              <%groups.forEach(function(group){%>
+              <tr>
+                <td><%=group.name%></td>
+                <td><a class="btn btn-danger btn-xs" href="admin/delete/<%=group._id%>"><i class="fa fa-trash"></i></a></td>
+                 </tr>
+              <%})%>
+            <%}%>
+          </tbody>
+          </table>
+          
+        
+
+        
+
+
+        
+
+      
+
+    
+
+  </div>
+
+
+<% include ../partials/footer %>

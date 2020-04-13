@@ -1,0 +1,98 @@
+<% include ../partials/header %>
+  
+          <div class="container quiz">
+            <div class="row">
+              
+              <form id="quiz-form" method="POST" action="/test/submit/<%=schedule._id%>">
+                  <input type="hidden" name="group" value="<%=schedule.group%>">    
+                  <input type="hidden" name="section" value="<%=schedule.section%>">    
+                  <input type="hidden" name="assignBy" value="<%=schedule.assignBy%>">    
+                  <h1><%test.title%></h1>  
+
+                <%test.subjects.forEach((sub, idx) => {%>
+                 <%const [shuffledQuestions, indexMapping] = utls.shuffleArray(sub.questions)%>
+                  <%shuffledQuestions.forEach(function(que, i){%>
+                  
+                    <div class="col-2-quiz" id="que-<%=idx%>-<%=i+1%>">
+                      <%if(i==0){%>
+                        <div class="sub-header"><%=sub.subject%></div>
+                      <%} %>
+                      <h4>Question <%=i+1%> out of <%=sub.total%></h4>
+                      <div class="que-container">
+                        
+                        <p style="white-space: pre-line"><%=que.text%></p>
+                           
+                          <%if(que.hasOwnProperty('img')){%>
+                          <img src="<%=que.img.split('public')[1]%>">
+                        <%} %>
+
+                      </div>
+
+                     </div>
+
+                      <div class="options">
+                        <%que.options.forEach(function(op, op_i){%>
+                          <div class="options-container">
+                            <input type="<%=que.type%>" name="que-<%=idx%>-<%=indexMapping[i]+1%>-op" id="que-<%=idx%>-<%=i+1%>-op-<%=op_i+1%>" value="<%=op_i+1%>">
+                            <label for="que-<%=idx%>-<%=i+1%>-op-<%=op_i+1%>"><%=op%></label>
+                          </div>
+                        <%})%>
+
+                        <div>
+                          <button type="button" class="btn-submit btn-mark">Mark For Review</button>    
+                        </div>
+                        
+                      </div>   
+
+                     </div>
+
+                    </div> 
+                  <%})%> 
+                <%})%>                          
+
+                <div>
+                  <button class="btn-submit btn-form" type="submit">Submit Test</button>  
+                </div>
+                
+
+              </form>
+
+              <div class="col-1-quiz">
+
+                <h1>Questions</h1>
+
+                <div class="timer">
+                  <h4>Length: <span><%=schedule.duration%></span> minutes</h4>
+                  <span id="duration" style="display: none;"><%=duration%></span>
+                  <h4><i class="fas fa-stopwatch"></i> <span id="time"></span> Left!</h4>
+                </div>
+                
+                <%test.subjects.forEach((sub, idx) => {%>
+                  <h4><%=sub.subject%></h4>
+                  <div class="que-list">
+                    <%for(var i=1; i<=sub.total; i++){%>
+                      <button class="btn-quiz" id="btn-quiz-<%=idx%>-<%=i%>"><%=i%></button>
+                    <%}%>
+                  </div>
+                <%})%> 
+
+                <div class="que-legend">
+                  <h4>Legend</h4>
+                  <p><span class="legend-ic"></span> Marked</p>
+                  <p><span class="legend-ic"></span> Answered</p>
+                  <p><span class="legend-ic"></span> Not Answered</p>
+                </div>
+
+              </div>
+
+          </div>
+        </div>
+
+          <div class="flash-msg-quiz">
+            <h1>Time's Up!</h1>
+            <h4>Submitting Test...</h4>
+          </div>
+            
+          </div>
+
+<% include ../partials/footer %>

@@ -1,0 +1,31 @@
+<% include ../partials/header %>
+
+  <div class="report-container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Test</th>
+          <th>Schedule Time</th>
+          <th>Total Questions</th>
+          <th>Total Correct</th>
+          <th>Marks</th> 
+          <th>Details</th> 
+        </tr>
+      </thead>
+
+      <tbody>
+        
+          <tr>  
+            <td><%=result.schedule.test.title%></td>
+            <td><%=result.schedule.time.toLocaleString()%></td>
+            <td><%=result.total%></td>
+            <td><%=result.totalCorrect%></td>
+            <td><%=parseInt(result.marks)%>%</td>
+            <td><a href="/report/result/detail/<%=username%>/<%=result.schedule._id%>"><i class="fas fa-paper-plane"></i> View Details</a></td>
+          </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+<% include ../partials/footer %>

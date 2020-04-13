@@ -1,0 +1,42 @@
+<% include ../partials/header %>
+
+   	<div class="report-container">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Test</th>
+						<th>Start Time</th>
+						<th>Duration</th>
+						<th>Status</th>
+						<th>Scheduler</th>
+					</tr>
+				</thead>
+			
+				<tbody>
+					<%schedules.forEach(function(sch){%>
+					<tr>
+						<td>
+							<a href="/report/detail/<%=sch._id%>"><%=sch.test.title%></a>
+						</td>
+						<td>
+							<%=sch.time.toLocaleString()%>
+						</td>
+						<td>
+							<%=sch.duration%>
+						</td>
+						<%if(sch.expired){%>
+						<td>Stopped</td>
+						<%}else if(sch.started){%>
+						<td>Started</td>
+						<%}else{%>
+						<td>Yet to start</td>
+						<%}%>
+						<td><%=sch.scheduler.username%></td>
+					</tr>
+					<%})%>
+				</tbody>
+			</table>
+
+    </div>
+
+<% include ../partials/footer %>

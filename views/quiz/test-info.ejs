@@ -1,0 +1,27 @@
+<% include ../partials/header %>
+
+
+<div class="container">
+    <div class="form-container">
+        <form action="<%=action%>" method="POST" id="add_test_info">
+
+            <h1>Add following info about new test</h1>
+
+            <div class="input-group">
+                <label for="title">Title</label>
+                <input type="text" id="title" name="title">
+            </div>
+
+            <div class="input-group">
+                <label for="subNo">Number of Subjects</label>
+                <input name="subNo" id="subNo" type="number" min="1" max="10" step="1" value="1" />
+            </div>
+
+            <button type="submit" class="btn-submit">Proceed</button>
+
+        </form>
+    </div>
+</div>
+
+
+<% include ../partials/footer %>

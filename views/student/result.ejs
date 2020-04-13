@@ -1,0 +1,49 @@
+<% include ../partials/header %>
+
+<button class="dl-btn" id="dlreport"><i class="fas fa-download"></i> Download Report</button>
+  <div class="report-container" id="dlreport_table">
+    <div class="report-info">
+      <h1><b>Test Title : </b><span id="test_title"><%=test.title%></span></h1>
+      <h2><b>Student Username : </b><span id="add_info"><%=student%></span></h2>
+		</div>
+    <%result.subjects.forEach((sub, idx) => {%>
+      <table class="table">
+        <div class="result-info">
+          <span><b>Subject Name :</b> <%=sub.subject%></span>
+          <span><b>Total Correct :</b> <%=sub.totalCorrect%> out of <%=sub.answers.length%></span>
+          <span><b>Marks :</b> <%=parseInt(sub.marks)%>%</span>
+        </div>
+        <thead>
+          <tr>
+            <th>Question No.</th>
+
+            <th>Result</th>
+            <th>Questions</th>
+            <th>Explanation</th>  
+          </tr>
+        </thead>
+
+        <tbody>
+            <%sub.answers.forEach(function(ans, num){%>
+              <tr>  
+                <td><%=num+1%></td>
+                
+                <%if(ans.isCorrect){%>
+                  <td><i class="fas fa-check-circle" style="color: green;"></i></td>
+                <%}else{%>
+                  <td><i class="fas fa-times-circle" style="color: red;"></i></td>
+                <%}%>
+                  <td><%=test.subjects[idx].questions[num].text%></td>
+                 <td><%=test.subjects[idx].questions[num].desc%></td>
+
+              </tr>
+            <%})%>
+          </tbody>
+        </table>
+      <%})%>
+  </div>
+
+  <script type="text/javascript" src="/javascript/html2pdf.js"></script>
+	<script type="text/javascript" src="/javascript/dlreport.js"></script>
+            
+<% include ../partials/footer %>

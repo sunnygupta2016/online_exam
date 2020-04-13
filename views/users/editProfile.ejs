@@ -1,0 +1,38 @@
+<% include ../partials/header %>
+
+<div class="container">
+
+    <div class="form-container">
+
+        <h1>Edit Profile</h1>
+        <h5>*Leave password empty if you want it to remain unchanged</h5>
+        <form action="/edit/profile/<%=user._id%>" method="POST" id="edit_user">
+
+            <div class="input-group">
+                <label>Username</label>
+                <input type="text" name="username" id="username" value=<%=user.username%>>
+            </div>
+
+            <div class="input-group">
+                <label>E-mail Address</label>
+                <input type="E-mail" name="email" id="email" value=<%=user.email%> >
+            </div>
+
+            <div class="input-group">
+                <label>Password</label>
+                <input type="Password" name="password" id="password">
+            </div>
+
+            <div class="input-group">
+                <label>Confirm Password</label>
+                <input type="Password" name="confirm" id="confirm">
+            </div>
+
+            <button type="submit" class="btn-submit">Submit</button>
+
+        </form>
+
+    </div>
+</div>
+
+<% include ../partials/footer %>

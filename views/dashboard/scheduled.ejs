@@ -1,0 +1,63 @@
+<% include ../partials/header %>
+            
+            <div class="col-1-dash"> 
+                
+                <div class="user-ic">
+                  <i class="fas fa-user-circle"></i>
+                  <h4><%=currentUser.username%></h4>
+                </div>
+
+                <div class="container">
+                  <ul>  
+                    <li><i class="fas fa-tachometer-alt"></i> <a href="/student/dashboard/">Dashboard</a> </li>
+                    
+                    <%if(currentUser.roles.hasOwnProperty('analytics')){%>  
+                      <li><i class="fas fa-map"></i> <a href="/student/report">Report</a> </li>
+                    <%}%>
+
+                    <%if(currentUser.roles.hasOwnProperty('participant')){%>
+                      <li class="bg-shadow"><i class="fas fa-pen-nib"></i> <a href="/student/scheduled">Scheduled Tests</a></li>
+                    <%}%>
+
+                    <li><i class="fas fa-user-edit"></i> <a href="/edit/profile/<%=currentUser._id%>">Edit Profile</a> </li>
+                  </ul>
+                </div>
+            </div>
+
+            <div class="col-3-dash">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Test</th>
+                    <th>Start Time</th>
+                    <th>Duration</th>
+                    <th>Status</th>
+                    <th>Go To</th>  
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <%schedules.forEach(function(sch){%>
+                    <tr>  
+                      <td><%=sch.test.title%></td>
+                      <td><%=sch.time.toLocaleString()%></td>
+                      <td><%=sch.duration%></td>
+                      <%if(sch.expired){%>
+                        <td>Stopped</td>
+                      <%}else if(sch.started){%>
+                        <td>Started</td>
+                      <%}else{%>
+                        <td>Yet to start</td>
+                      <%}%>
+                      <%if(sch.expired){%>
+                        <td><i class="fas fa-ban"></i> Test Over</td>
+                      <%}else if(sch.started){%>
+                        <td><a href="/test/take/<%=sch._id%>"><i class="fas fa-paper-plane"></i> Take Test</a></td>
+                      <%}%>
+                    </tr>
+                  <%})%>
+                </tbody>
+              </table>
+            </div>
+            
+<% include ../partials/footer %>

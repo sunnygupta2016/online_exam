@@ -1,0 +1,132 @@
+<% include ../partials/header %>
+
+	<div class="container">
+		
+		<div class="form-container">
+			
+			<h1>Schedule Test</h1>
+
+			<form action="/test/schedule" method="POST" id="schedule_test">
+
+				<div class="input-group">
+					<label for="test-op">Select Test</label>
+					<select name="testOp" id="testOp">
+						<option value="null">Choose Test</option>
+						<%if(tests){%>
+							<%tests.forEach(function(test){%>
+								<option value="<%=test._id%>"><%=test.title%></option>
+							<%})%>
+						<%}%>
+					</select>
+				</div>
+
+				<div class="input-group">
+                  	<label for="department">Department Name</label>
+					<select name="department" id="department">
+						<option value="null">Select Department</option>
+						<%if(departments){%>
+							<%departments.forEach(function(department){%>
+								<option><%=department.name%></option>
+							<%})%>
+						<%}%>
+					</select>
+                </div>
+
+                <div class="input-group">
+					<label for="batchFrom">Select Batch Start Year</label>  
+					<input name="batchFrom" id="batchFrom" type="number" min="2015" max="2099" step="1" value="2015" />
+				</div> 
+
+				<div class="input-group">
+					<label for="batchTo">Select Batch End Year</label>  
+					<input name="batchTo" id="batchTo" type="number" min="2015" max="2099" step="1" value="2019" />
+				</div>   
+
+				<div class="input-group">
+					<label for="groupFilterBy">Schedule By</label>
+					<select name="groupFilterBy" id="groupFilterBy">
+						<option value="section">Section</option>
+						<option value="group">Group</option>
+						<option value="individual">Individual Student</option>
+					</select>
+				</div>
+
+				<div class="input-group">
+					<label for="userSectionOption">Student Section</label>
+					<select name="userSectionOption" id="userSectionOption">
+						<option value="null">Select Section</option>
+						<option value="all">All</option>
+						<%if(sections){%>
+							<%sections.forEach(function(section){%>
+								<option>
+									<%=section.name%>
+								</option>
+							<%})%>
+						<%}%>
+					</select>
+				</div>
+				
+				<div class="input-group">
+					<label for="userGroupOption">Student Group</label>
+					<select name="userGroupOption" id="userGroupOption">
+						<option value="null">Select Group</option>
+						<option value="all">All</option>
+						<%if(groups){%>
+							<%groups.forEach(function(group){%>
+								<option><%=group.name%></option>
+							<%})%>
+						<%}%>
+					</select>
+				</div>
+
+				<div class="input-group">
+					<label for="studentUsername">Enter username</label>
+					<input type="text" id="studentUsername" name="studentUsername">
+				</div>
+
+				<div class="input-group">
+					<label for="date">Enter Date & Time of Test</label>
+					<input type="date" id="date" name="date">
+				</div>
+
+				<div class="input-group">
+					<label for="time">Enter Date & Time of Test</label>
+					<input type="time" id="time" name="time">
+				</div>
+
+				<input type="hidden" value="<%= new Date().getTimezoneOffset() %>" name="timezoneOffset">
+
+
+				<div class="input-group">
+					<label for="duration">Duration (In minutes)</label>
+					<input name="duration" type="number" id="duration" placeholder="Enter Duration">
+				</div>
+
+				<div class="input-group">
+						<h3 id="test_countdown">Test Countdown Start : </h3>
+						<input type="radio" class="radio-input" name="countdown" id="status1" value="test_start" checked>
+						<label class="radio-label" for="status1">From test start</label>
+						
+						<input type="radio" class="radio-input" name="countdown" id="status2" value="login">
+						<label class="radio-label" for="status2">From login time</label>
+				</div>
+
+				<div class="input-group">
+						<h3 id="test_countdown">Result Viewable To Student : </h3> 
+						<input type="radio" class="radio-input" name="hideResult" id="hideResult1" value="false" checked>
+						<label class="radio-label" for="hideResult1">View Result After Test</label>
+						
+						<input type="radio" class="radio-input" name="hideResult" id="hideResult2" value="true">
+						<label class="radio-label" for="hideResult2">Hide Result</label>
+				</div>
+
+				<button type="submit" class="btn-submit">Submit</button>
+
+			</form>
+
+		</div>
+
+	</div>
+
+
+<% include ../partials/footer %>

@@ -1,0 +1,93 @@
+<% include ../partials/header %>
+
+	<div class="container">
+
+	  <div class="form-container">
+
+			<h1>Edit User</h1>
+				<form action="/edit/user/<%=user._id%>" method="POST" id="edit_user" >
+
+					<input type="hidden" value="<%=user.username%>" name="oldName">
+					<input type="hidden" value="<%=user.email%>" name="oldEmail">
+
+					<div class="input-group">
+						<label>Username</label>
+						<input type="text" name="username" id="username" value=<%=user.username%>>
+					</div>	
+
+					<div class="input-group">
+						<label>E-mail Address</label>
+						<input type="E-mail" name="email" id="email" value=<%=user.email%> >	
+					</div>	
+
+					<div class="input-group">
+						<label>Password</label>
+						<input type="Password" name="password" id="password"  >
+					</div>
+
+					<div class="input-group">
+						<label>Confirm Password</label>
+						<input type="Password" name="confirm" id="confirm"  >
+					</div>
+
+					<div class="input-group">
+						<input type="radio" class="radio-input" name="status" id="status1" value="active" 
+							<%if(user.status == 'active'){%>checked<%}%>
+						>
+						<label class="radio-label" for="status1">Active</label>
+						
+						<input type="radio" class="radio-input" name="status" id="status2" value="blocked" 
+							<%if(user.status == 'blocked'){%>checked<%}%>
+						>
+						<label class="radio-label" for="status2">Blocked</label>
+					</div>
+          
+          <div class="input-group">
+            <label for="userType">User Type</label>
+            <select name="userType" id="userType">
+              <option value="Student">Student</option>
+              <option value="Faculty">Faculty</option>
+              <option value="Others">Others</option>
+            </select>
+          </div>                    
+
+          <div class="input-group">
+            <label for="user-group-option">User Group</label>
+            <select name="userGroupOption" id="user-group-option">
+              <option value=<%=user.group%>><%=user.group%></option>
+              <%if(groups){%>
+                <%groups.forEach(function(group){%>
+                  <%if(group.name !== user.group){%>
+                    <option><%=group.name%></option>
+                  <%}%>
+                <%})%>
+              <%}%>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label for="user-group-new">Or, assign new group</label>
+            <input type="text" name="userGroupNew" id="user-group-new">
+          </div>
+
+					<div class="input-group">
+						<h4>Roles</h4>
+						<input type="checkbox" name="role" id="role1" value="author" disabled="true"><label for="role1">Author</label>
+						<input type="checkbox" name="role" id="role2" value="participant" checked><label for="role2">Participant</label>
+						<input type="checkbox" name="role" id="role3" value="analytics" checked><label for="role3">Analytics</label>
+            <input type="checkbox" name="role" id="role4" value="schedule" disabled="true"><label for="role4">Schedule Test</label>
+						<input type="checkbox" name="role" id="role5" value="admin" disabled="true"><label for="role5">Administration</label>
+					</div>
+					 <div class="col-2-form que-image">
+                      <label for="file">profile image</label>
+                      <input type="file" accept="image/*" name="que-<%=i%>-img">
+                    </div>
+          
+          <button type="submit" class="btn-submit">Submit</button>
+
+				</form>
+
+			</div>
+ 		</div>
+
+<% include ../partials/footer %>

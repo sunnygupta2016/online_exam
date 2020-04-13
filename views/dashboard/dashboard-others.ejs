@@ -1,0 +1,37 @@
+<% include ../partials/header %>
+            
+            <div class="col-1-dash"> 
+                
+                <div class="user-ic">
+                  <i class="fas fa-user-circle"></i>
+                  <h4><%=currentUser.username%></h4>
+                </div>
+
+                <div class="container">
+                  <ul>  
+                    <li class="bg-shadow"><i class="fas fa-tachometer-alt"></i> <a href="/others/dashboard/">Dashboard</a> </li>
+                    
+                    <li><i class="fas fa-user-edit"></i> <a href="/edit/profile/<%=currentUser._id%>">Edit Profile</a> </li>
+
+                    <%if(currentUser.roles.hasOwnProperty('admin')){%>
+                      <li id="add-user-link"><i class="fas fa-user-plus"></i> <a>Add User</a></li>
+                      <li><i class="fas fa-user-edit"></i> <a href="/admin/users/list">Manage Students</a> </li>
+                    <%}%>
+                    
+                    <%if(currentUser.roles.hasOwnProperty('analytics')){%>  
+                      <li><i class="fas fa-map"></i> <a href="/report/list">View Report</a> </li>
+                    <%}%>
+
+                    <%if(currentUser.roles.hasOwnProperty('author')){%>
+                      <li id="add-test-link"><i class="fas fa-plus-circle"></i> Add Test </li>
+                    <%}%>
+
+                    <%if(currentUser.roles.hasOwnProperty('schedule')){%>
+                      <li><i class="fas fa-calendar-alt"></i> <a href="/test/schedule">Schedule Test</a> </li>
+                    <%}%>
+                    <!-- <li><i class="fas fa-user-edit"></i> <a href="  "></a> </li> -->
+                  </ul>
+                </div>
+            </div>
+            
+<% include ../partials/footer %>

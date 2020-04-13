@@ -1,0 +1,41 @@
+<% include ../partials/header %>
+
+<a href="/assets/test.xlsx" download="test_template_excel" class="dl-btn" id="dlxlstemplate"><i class="fas fa-download"></i> Download Excel Template</a>
+<div class="container">
+	<div class="form-container">
+		<form action="/test/new/xls/detail" method="POST" enctype="multipart/form-data" id="add_test_xls">
+
+			<h1>Add following info about new test</h1>
+
+			<input type="hidden" value="<%=subNo%>" name="subNo">
+			<input type="hidden" value="<%=testId%>" name="testId">
+			<input type="hidden" value="<%=title%>" name="title">
+			
+			<div class="input-group">
+				<label for="subjectOption"></label>
+				<select name="subjectOption" id="subjectOption">
+					<option value="null">Select Subject</option>
+					<%subjects.forEach(function(subject){%>
+						<option value="<%=subject.name%>"><%=subject.name%></option>
+					<%})%>
+				</select>
+			</div>
+
+			<div class="input-group">
+				<label for="subjectNew">Or, Add a new subject</label>
+				<input type="text" id="subjectNew" name="subjectNew">
+			</div>
+
+			<div class="input-group">
+				<label for="file">Upload Excel Sheet</label>
+				<input type="file" id="file" accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, .csv" name="file">
+			</div>
+
+			<button type="submit" class="btn-submit">Proceed</button>
+
+		</form>
+	</div>
+</div>
+
+
+<% include ../partials/footer %>

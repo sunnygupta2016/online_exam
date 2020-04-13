@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MMDU Quiz App</title>
+
+      <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta http-equiv="x-ua-compatible" content="IE=edge, chrome=1">
+      <!-- Optimization for mobile devices -->
+      <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+      <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+          <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+      <meta name="viewport" content ="width=device-width,initial-scale=1,user-scalable=yes,maximum-scale=1.0" />
+
+      <!-- <link rel="icon" href="/assets/neportal_logo.ico"> -->
+
+      <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
+      <link rel="stylesheet" href="/stylesheets/font-awesome/css/all.css">
+
+      <!-- Google Fonts -->
+ 
+      <link rel="stylesheet" href="/stylesheets/animate.css">
+      <link rel="stylesheet" href="/stylesheets/app-add-test.css">
+  </head>
+  <body>
+
+<div>
+          <div class="header">
+
+          <div class="container nav-container">
+            <p class="title"><img src="/assets/mmu_logo.png" alt=""><!-- <a href="/"><span >MM </span>(Deemed To Be) <span >University</a> --></p>
+            <div>
+
+            
+            <nav>
+                      
+                  <li ><a href="/">Home</a></li>
+                  <!-- <li class="dropdown_main">
+                      <a href="#">Placeholder <span class="fa fa-caret-down"></span></a>
+                      <ul class="dropdown_content">
+                        <li><a>placeholder</a></li><br>
+                      </ul>
+                   </li> -->
+                  
+                  <li><a href="/about">About</a></li>
+                  <li><a href="/contact">Contact</a></li>
+                  
+                  <%if(!currentUser){%>  
+                    <li class="dropdown_main">
+                      <a href="#">Login
+                      <span class="fa fa-caret-down"></span></a>
+                      <ul class="dropdown_content">
+                        <li><a href="/login/student">Login as Student</a></li><br>
+                        <li><a href="/login/faculty">Login as Faculty</a></li><br>
+                      </ul> 
+                   </li>  
+                  <%}%>
+
+                  <%if(currentUser){%>
+                    <%if(currentUser.userType.toLowerCase() == 'student'){%>
+                     <li><a href="/student/dashboard">Dashboard</a></li>
+                    <%}else if(currentUser.isAdmin){%>
+                      <li><a href="/admin/dashboard">Dashboard</a></li>  
+                    <%}else{%> 
+                     <li><a href="/others/dashboard">Dashboard</a></li>
+                    <%}%>
+
+                    <li class="dropdown_main">
+                      <a>Signed in as, <span class=""><%= currentUser.username %></span>
+                      <span class="fa fa-caret-down"></span></a>
+                          
+                          <!-- <ul class="dropdown_content">                                 
+                              <li><a href="/verify/resend/">Resend Verification Email</a></li>
+                          </ul>   -->                      
+                    </li> 
+                    <li><a href="/logout">Log Out</a></li>
+                  <%}%>
+                  
+                  <li id="ham-btn" onclick="toggleHam()"><i class="fa fa-bars greenish ham" ></i></li> 
+               </div> 
+            </nav>
+            </div>
+
+            
+            <div class="container-flash">
+              <% if(error && error.length > 0){ %>
+                <div class="flash-msg error-msg">
+                  <span><%= error %></span>
+                  <i class="fa fa-times flash-msg-close"></i>
+                </div> 
+              <% } %>
+
+              <% if(success && success.length > 0){ %>
+                <div class="flash-msg success-msg">
+                  <%= success %>
+                  <i class="fa fa-times flash-msg-close"></i>
+                </div> 
+              <% } %> 
+            </div>
+
+            <div class="container-loading">
+              <div class="flash-msg loading-msg">
+                <img src="/assets/loading.svg" alt=""> <span class="greenish">Loading...</span>
+              </div> 
+            </div>
+
+          </div>
+        </div>
+
+        <div id="content">
+      
+          <div class="container">
+            
+            <div class="form-container new-test-form">
+              <h1>Add New Test</h1>
+              <h5>* Mark the correct option by clicking the checkbox to its right. </h5>
+
+              <form action="/test/new/details" method="POST" enctype="multipart/form-data">
+                
+                <input type="hidden" value="<%=testInfo.subject%>" name="subject">
+                <input type="hidden" value="<%=testInfo.totalQue%>" name="total">
+                <input type="hidden" value="<%=testInfo.title%>" name="title">
+                <input type="hidden" value="<%=testInfo.subNo%>" name="subNo">
+                <input type="hidden" value="<%=testInfo.testId%>" name="testId">
+                
+
+                <%for(var i=1; i<=testInfo.totalQue; i++){%>
+                  <div class="input-group">
+
+                    <div class="col-2-form">
+                      <label for="que-<%=i%>">Que. <%=i%></label>
+                      <textarea name="que-<%=i%>" required></textarea>
+                    </div>  
+
+                    <div class="col-1-form">
+                      <input type="radio" name="que-<%=i%>-type" value="radio" checked class="radio-input" required>
+                      <label for="que-<%=i%>-type" class="radio-label">One Answer</label>
+                      <input type="radio" name="que-<%=i%>-type" value="checkbox" class="radio-input" required>
+                      <label for="que-<%=i%>-type" class="radio-label">Multiple Answers</label>
+                    </div>
+                    
+                    <div class="input-choices">
+                      <label for="que-<%=i%>-op-1">Option 1</label><input type="text" name="que-<%=i%>-op-1" required>
+                      <label for="que-<%=i%>-op-2">Option 2</label><input type="text" name="que-<%=i%>-op-2" required>
+                      <div> 
+                          <span>Add Option <i class="fas fa-plus-square" style=""></i></span>
+                          <span>Remove Option <i class="fas fa-minus-circle"></i></span>
+                      </div>
+                    </div>
+
+                    <div class="col-2-form que-image">
+                      <label for="file">Add Image</label>
+                      <input type="file" accept="image/*" name="que-<%=i%>-img">
+                    </div>
+
+                    <div class="col-2-form que-desc">
+                      <label for="que-<%=i%>-desc">Description</label><textarea name="que-<%=i%>-desc"></textarea>
+                      <hr>
+                    </div>
+
+                  </div>
+                <%}%>                
+
+                <div class="input-group">
+                  <div class="col-2-form">
+                    <button class="btn-submit" type="submit">Submit</button>
+                  </div>
+                  
+                </div>
+
+
+              </form>
+
+            </div>
+
+          </div>
+
+
+
+<% include ../partials/footer %>
+
+   

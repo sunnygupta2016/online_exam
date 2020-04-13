@@ -1,0 +1,88 @@
+<% include ../partials/header %>
+
+<a href="/assets/add_user.xlsx" download="user_template_excel" class="dl-btn" id="dlxlstemplate"><i class="fas fa-download"></i> Download Excel Template</a>
+<div class="container">
+	<div class="form-container">
+		<form action="/register/user/xls" method="POST" enctype="multipart/form-data" id="add_user_xls">
+
+			<h1>Add following info about new user</h1>
+			
+      <div class="input-group">
+        <label for="userGroupOption">User Group</label>
+        <select name="userGroupOption" id="userGroupOption">
+          <option value="null">Select Group</option>
+          <%if(groups){%>
+          <%groups.forEach(function(group){%>
+          <option>
+            <%=group.name%>
+          </option>
+          <%})%>
+          <%}%>
+        </select>
+      </div>
+      
+      <div class="input-group">
+        <label for="userGroupNew">Or, assign new group (e.g. A1, B1)</label>
+        <input type="text" name="userGroupNew" id="userGroupNew">
+      </div>
+      
+      <div class="input-group">
+        <label for="department">Department Name</label>
+        <select name="department" id="department">
+          <option value="null">Select Department</option>
+          <%if(departments){%>
+          <%departments.forEach(function(department){%>
+          <option>
+            <%=department.name%>
+          </option>
+          <%})%>
+          <%}%>
+        </select>
+      </div>
+      
+      <div class="input-group">
+        <label for="departmentNew">Or, add a new department</label>
+        <input type="text" name="departmentNew" id="departmentNew">
+      </div>
+
+      <div class="input-group">
+        <label for="batchFrom">Select Batch Start Year</label>  
+        <input name="batchFrom" id="batchFrom" type="number" min="2015" max="2099" step="1" value="2015" />
+      </div> 
+
+      <div class="input-group">
+        <label for="batchTo">Select Batch End Year</label>  
+        <input name="batchTo" id="batchTo" type="number" min="2015" max="2099" step="1" value="2019" />
+      </div>
+
+      <div class="input-group">
+        <label for="userType">User Type</label>
+        <select name="userType" id="userType">
+          <option value="Student">Student</option>
+          <!-- <option value="Faculty">Faculty</option>
+          <option value="Others">Others</option> -->
+        </select>
+      </div>
+
+			<div class="input-group">
+				<h4>Roles</h4>
+				<input type="checkbox" name="role" id="role1" value="author" disabled="true"><label for="role1">Author</label>
+				<input type="checkbox" name="role" id="role2" value="participant" checked><label for="role2">Participant</label>
+				<input type="checkbox" name="role" id="role3" value="analytics" checked><label for="role3">Analytics</label>
+              	<input type="checkbox" name="role" id="role4" value="schedule" disabled="true"><label for="role4">Schedule Test</label>
+				<input type="checkbox" name="role" id="role5" value="admin" disabled="true"><label for="role5">Administration</label>
+          	</div>
+
+			<div class="input-group">
+				<label for="upload">Upload Excel Sheet</label>
+				<input type="file" id="file" accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, .csv" name="file">
+			</div>
+
+			<button type="submit" class="btn-submit">Proceed</button>
+
+		</form>
+	</div>
+</div>
+
+
+<% include ../partials/footer %>

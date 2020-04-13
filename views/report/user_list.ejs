@@ -1,0 +1,66 @@
+<% include ../partials/header %>
+
+<button class="dl-btn" id="dlreport"><i class="fas fa-download"></i> Download Report</button>
+
+   	<div class="report-container" id="dlreport_table">
+		<div class="report-info">
+			<h1><b>Test Title : </b><span id="test_title"><%=schedule.test.title%><span></h1>
+			<h2><b>Schedule Time : </b><span id="add_info"><%=schedule.time.toLocaleString()%></span></h2>
+		</div>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Username</th>
+					<th>Group</th>
+					<th>Status</th>
+					<th>Total Correct</th>
+				</tr>
+			</thead>
+		
+			<tbody>
+				<%users.forEach(function(user){%>
+					<tr>
+						<td>
+							<%=user.username%>
+						</td>
+						<td>
+							<%=user.group%>
+						</td>
+						<td>
+							<%if(user.scheduleIds.length > 0){%>
+								<%for(var i=0; i<user.scheduleIds.length; i++){%>
+									<%if(JSON.stringify(schedule._id) == JSON.stringify(user.scheduleIds[i])){%>
+										<a href="/report/result/detail/<%=user.username%>/<%=schedule._id%>">View Result</a>
+										<%break;%>
+									<%}else{%>
+										<%if(i == user.scheduleIds.length - 1){%>
+											Test Not Taken
+										<%}%>
+									<%}%>
+								<%}%>
+							<%}else{%>
+								Test Not Taken
+							<%}%>
+						</td>
+						<td>
+							<%if(user.testMarks !== undefined && JSON.parse(JSON.stringify(user.testMarks))[schedule._id] !== undefined){%>
+								<%=parseInt(JSON.parse(JSON.stringify(user.testMarks))[schedule._id]) %>
+									
+							<%}%>
+						</td>
+						<td>
+						   <%=user.totalCorrect%>
+						   </td>		
+					</tr>
+				<%})%>
+			</tbody>
+		</table>
+          <button>Export HTML table to CSV file</button>
+
+	</div>
+    <script type="text/javascript" src="/javascript/csv.js"></script>
+	<script type="text/javascript" src="/javascript/html2pdf.js"></script>
+	<script type="text/javascript" src="/javascript/dlreport.js"></script>
+
+
+<% include ../partials/footer %>

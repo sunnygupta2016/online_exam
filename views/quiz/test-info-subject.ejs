@@ -1,0 +1,41 @@
+<% include ../partials/header %>
+
+
+<div class="container">
+	<div class="form-container">
+		<form action="/test/new/info" method="POST" id="add_test_info_subject">
+
+			<h1>Add following info about subject no. <%=subNo%></h1>
+			
+			<input type="hidden" value="<%=subNo%>" name="subNo">
+			<input type="hidden" value="<%=testId%>" name="testId">
+			<input type="hidden" value="<%=title%>" name="title">
+
+			<div class="input-group">
+				<label for="subjectOption"></label>
+				<select name="subjectOption" id="subjectOption">
+					<option value="null">Select Subject</option>
+					<%subjects.forEach(function(subject){%>
+						<option value="<%=subject.name%>"><%=subject.name%></option>
+					<%})%>
+				</select>
+			</div>
+
+			<div class="input-group">
+				<label for="subjectNew">Or, Add a new subject</label>
+				<input type="text" id="subjectNew" name="subjectNew">
+			</div>
+
+			<div class="input-group">
+				<label for="queNo">Number of Questions</label>
+				<input type="number" min="1" max="200" step="1" value="1" id="queNo" name="queNo">
+			</div>
+
+			<button type="submit" class="btn-submit">Proceed</button>
+
+		</form>
+	</div>
+</div>
+
+
+<% include ../partials/footer %>

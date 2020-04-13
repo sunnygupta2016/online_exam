@@ -1,0 +1,34 @@
+<% include ../partials/header %>
+
+            <div class="col-1-dash"> 
+                
+                <div class="user-ic">
+                  <i class="fas fa-user-circle"></i>
+                  <h4><%= currentUser.firstName %></h4>
+                  <h4><%= currentUser.username %></h4>
+                </div>
+
+                <div class="container">
+                  <ul>  
+                    <li class="bg-shadow"><i class="fas fa-tachometer-alt"></i> <a href=" ">Dashboard</a> </li>
+                    <li><i class="fas fa-map"></i> <a href="/student/report">Report</a> </li>
+                    <li><i class="fas fa-pen-nib"></i> <a href="/student/scheduled">Scheduled Tests</a></li>
+                    <li><i class="fas fa-user-edit"></i> <a href="/edit/profile/<%=currentUser._id%>">Edit Profile</a> </li>
+                  </ul>
+                </div>
+            </div>
+
+            <div class="col-3-dash">  
+                <div class="dash-info">
+                  <i class="fas fa-window-restore"></i><h5>Number Of Tests : <span><%=currentUser.schedules.length%></span></h5>    
+                </div>
+            
+
+                <div class="graph">
+                  <canvas id="myChart"></canvas>   
+                </div>
+            </div>
+            <input type="hidden" value="<%=currentUser._id%>" id="user_id">
+
+
+<% include ../partials/footer %>

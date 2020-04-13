@@ -1,0 +1,56 @@
+<% include ./partials/header %>
+
+          <div class="container">
+            
+            <div class="form-container">
+              
+            
+              <h1>Email Broadcast</h1>
+          
+              <form>
+
+                <div class="input-group">
+                  <label>Date</label>
+                  <input type="date" name="date" placeholder="Date">
+                </div>
+                
+                <div class="input-group">
+                  <label>Time</label>
+                  <input type="Time" name="time" placeholder="Time">
+                </div>
+
+                <div class="input-group">
+                  <label>From</label>
+                  <input type="email" name="mail">
+                </div>
+
+                <div class="input-group">
+                  <label>To</label>
+                  <input type="email" name="mail">
+                </div>
+
+                <div class="input-group">
+                  <input type="radio" name="visible" id="visible1" class="radio-input"><label for="visible1" class="radio-label">Cc</label>
+                  <input type="radio" name="visible" id="visible2" class="radio-input"><label for="visible2" class="radio-label">Bcc</label>
+                </div>
+
+                <div class="input-group">
+                  <label>Subject</label>
+                  <input type="text" name="subject">
+                </div>
+
+                <div class="input-group">
+                  <label>Body</label>
+                  <textarea name="body"></textarea>
+                </div>
+
+                <button type="submit" class="btn-submit">Send</button>
+              </form>
+
+            </div>
+
+          </div>
+
+<% include ./partials/footer %>
+
+   

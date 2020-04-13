@@ -1,0 +1,112 @@
+<% include ../partials/header %>
+
+	<div class="container">
+
+		<div class="form-container">
+
+			<h1>Add Users</h1>
+				<form action="/register/user" method="POST" id="add_user">
+
+					<div class="input-group">
+						<label>Username</label>
+						<input type="text" name="username" id="username"  >
+					</div>	
+
+					<div class="input-group">
+						<label>E-mail Address</label>
+						<input type="E-mail" name="email" id="email"  >	
+					</div>	
+
+<!--           					<div class="input-group">
+						<input type="checkbox" name="pass_gen" id="pass_gen"  id="pass_gen">
+						<label for="pass_gen">Generate Password</label>
+					</div> -->
+
+					<div class="input-group">
+						<label>Password</label>
+						<input type="Password" name="password" id="password"  >
+					</div>
+
+					<div class="input-group">
+						<label>Confirm Password</label>
+						<input type="Password" name="confirm" id="confirm"  >
+					</div>
+
+					<div class="input-group">
+						<input type="radio" class="radio-input" name="status" id="status1" value="active" checked>
+						<label class="radio-label" for="status1">Active</label>
+						
+						<input type="radio" class="radio-input" name="status" id="status2" value="blocked">
+						<label class="radio-label" for="status2">Blocked</label>
+					</div>
+					
+					<div class="input-group">
+						<label for="userType">User Type</label>
+						<select name="userType" id="userType">
+							<option value="Student">Student</option>
+							<option value="Faculty">Faculty</option>
+							<option value="Others">Others</option>
+						</select>
+					</div>  
+
+					<div class="input-group">
+						<label for="batchFrom">Select Batch Start Year</label>  
+						<input name="batchFrom" id="batchFrom" type="number" min="2015" max="2099" step="1" value="2015" />
+					</div> 
+
+					<div class="input-group">
+						<label for="batchTo">Select Batch End Year</label>  
+						<input name="batchTo" id="batchTo" type="number" min="2015" max="2099" step="1" value="2019" />
+					</div>                  
+
+					<div class="input-group">
+						<label for="userGroupOption">User Group</label>
+						<select name="userGroupOption" id="userGroupOption">
+							<option value="null">Select Group</option>
+							<%if(groups){%>
+								<%groups.forEach(function(group){%>
+									<option><%=group.name%></option>
+								<%})%>
+							<%}%>
+						</select>
+					</div>
+
+					<div class="input-group">
+						<label for="userGroupNew">Or, assign new group (e.g. A1, B1)</label>
+						<input type="text" name="userGroupNew" id="userGroupNew">
+					</div>
+
+					<div class="input-group">
+						<label for="department">Department Name</label>
+						<select name="department" id="department">
+							<option value="null">Select Department</option>
+							<%if(departments){%>
+								<%departments.forEach(function(department){%>
+									<option><%=department.name%></option>
+								<%})%>
+							<%}%>
+						</select>
+					</div>
+
+					<div class="input-group">
+						<label for="departmentNew">Or, add a new department</label>
+						<input type="text" name="departmentNew" id="departmentNew">
+					</div>
+
+					<div class="input-group">
+						<h4>Roles</h4>
+						<input type="checkbox" name="role" id="role1" value="author" disabled="true"><label for="role1">Author</label>
+						<input type="checkbox" name="role" id="role2" value="participant" checked><label for="role2">Participant</label>
+						<input type="checkbox" name="role" id="role3" value="analytics" checked><label for="role3">Analytics</label>
+						<input type="checkbox" name="role" id="role4" value="schedule" disabled="true"><label for="role4">Schedule Test</label>
+						<input type="checkbox" name="role" id="role5" value="admin" disabled="true"><label for="role5">Administration</label>
+					</div>
+					
+					<button type="submit" class="btn-submit">Submit</button>
+
+				</form>
+
+			</div>
+		</div>
+
+<% include ../partials/footer %>

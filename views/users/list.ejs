@@ -1,0 +1,101 @@
+<% include ../partials/header %>
+
+   	<div class="edit-container">
+	    <div class="form-container">
+				<form id="user_select" method="POST" action="/admin/users/list">
+					<input type="hidden" value="<%=mode%>" name="mode" />
+		    	<div class="input-group">
+		    		<label>Select Type of User</label>
+		    		<select name="user_option" id="user_option">
+		    			<option>Select Option</option>
+							<option value="Student">Student</option>
+							<%if(currentUser.userType !== 'Faculty' && (mode && mode !== 'graph')){%>
+								<option value="Others">Others</option>
+								<option value="Faculty">Faculty</option>
+							<%}%>
+		  			</select>	
+		    	</div>
+		    	<div class="input-group" id="group_option_container">
+		    		<label>Select Group</label>
+		    		<select name="group_option" id="group_option">
+		    			<%groups.forEach((group) => {%>
+		    				<option value=<%=group.name%>><%=group.name%></option>
+		    			<%})%>
+		  			</select>	
+		    	</div>
+
+		    	<button type="submit" class="btn-submit">Submit</button>
+	    	</form>
+	    </div>
+  	
+
+
+      <table class="table">
+      	<%if(type == 'Student'){%>
+	        <thead>
+	          <tr>
+	            <th>Username</th>
+	            <th>Email ID</th>  
+				<th>Group</th>  
+				<!-- <th>Action</th> -->
+	          </tr>
+	        </thead>
+
+	        <tbody>
+	          <%users.forEach(function(user){%>
+							<tr> 
+								<td>
+									<%if(mode == 'graph'){%>
+										<a href="/report/graph/view/<%=user._id%>"><%=user.username%></a>
+									<%}else{%>
+										<a href="/edit/user/<%=user._id%>"><%=user.username%></a>
+									<%}%>
+								</td> 
+	             	<td><%=user.email%></td> 
+					<td><%=user.group%></td> 
+					<!-- <td><a href=""><i class="fas fa-trash-alt" style="color: red;"></i> Delete User</a></td>	 -->
+	            </tr>
+	          <%})%>
+	        </tbody>
+        <%}else if(type == 'Faculty'){%>
+        	<thead>
+        		<tr>
+        			<th>Username</th>
+        			<th>Email ID</th>
+        			<!-- <th>Action</th> -->
+        		</tr>
+        	</thead>
+
+        	<tbody>
+	          <%users.forEach(function(user){%>
+	            <tr>  
+	             	<td><a href="/edit/user/<%=user._id%>"><%=user.username%></a></td> 
+					 <td><%=user.email%></td> 
+					 <!-- <td>Delete User</td> -->
+	            </tr>
+	          <%})%>
+	        </tbody>
+        <%}else if(type == 'Others'){%>
+        	<thead>
+        		<tr>
+        			<th>Username</th>
+        			<th>Email ID</th>
+        			<!-- <th>Action</th> -->
+        		</tr>
+        	</thead>
+
+        	<tbody>
+	          <%users.forEach(function(user){%>
+	            <tr>  
+	             	<td><a href="/edit/user/<%=user._id%>"><%=user.username%></a></td> 
+					 <td><%=user.email%></td> 
+					 <!-- <td>Delete User</td> -->
+	            </tr>
+	          <%})%>
+	        </tbody>
+        <%}%>
+      </table>
+
+    </div>
+
+<% include ../partials/footer %>

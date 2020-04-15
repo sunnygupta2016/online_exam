@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
-  "node":"^10.16.2",
   "scripts": {
     "start": "node app.js"
   },
@@ -46,4 +45,9 @@
     "sqlite3": "^4.0.6",
     "underscore": "^1.9.2",
     "xlsx": "^0.14.0"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/sunnygupta2016/NewMMU.git"
+  },
+  "homepage": "https://github.com/sunnygupta2016/NewMMU/edit/master/README.md"
+}

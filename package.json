@@ -3,14 +3,15 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
+  "node":"^10.16.2",
   "scripts": {
     "start": "node app.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://gitlab.com/12980/MMUQuizApp.git"
+    "url": "https://github.com/sunnygupta2016/NewMMU.git"
   },
-  "author": "forever_team",
+  "author": "sunnygupta2016",
   "license": "ISC",
   "dependencies": {
     "agenda-n": "^1.0.0",
@@ -35,6 +36,7 @@
     "mongoose": "^5.7.13",
     "multer": "^1.4.0",
     "multiparty": "^4.2.1",
+    "node-pre-gyp": "^0.14.0",
     "nodemailer": "^4.6.7",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
@@ -44,9 +46,4 @@
     "sqlite3": "^4.0.6",
     "underscore": "^1.9.2",
     "xlsx": "^0.14.0"
-  },
-  "bugs": {
-    "url": "https://gitlab.com/12980/MMUQuizApp/issues"
-  },
-  "homepage": "https://gitlab.com/12980/MMUQuizApp#README"
-}
+  }

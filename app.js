@@ -112,8 +112,9 @@ app.use("/report/", reportRoutes);
 // app.listen(3001, '192.168.9.78', function(){
 //     console.log("Server Deployed");
 // });
+var port=process.env.PORT || 5000
 
-app.listen(3001, function(){
+app.listen(port, function(){
     console.log("Server Deployed");
 });
 

@@ -34,6 +34,7 @@
     "forever": "^2.0.0",
     "hashmap": "^2.4.0",
     "heroku": "^7.39.2",
+    "install": "^0.13.0",
     "json2csv": "^4.5.4",
     "loopback-connector-sqlite3": "^3.0.0",
     "map-array": "^1.2.1",

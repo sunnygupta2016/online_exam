@@ -47,7 +47,7 @@
     "passport-local-mongoose": "^5.0.1",
     "shuffle": "^0.2.2",
     "shuffle-array": "^1.0.1",
-    "sqlite3": "^4.0.6",
+    "sqlite3": "^4.1.1",
     "underscore": "^1.9.2",
     "xlsx": "^0.14.0"
   },

@@ -310,7 +310,6 @@ window.onload = function () {
           <li id="del-user-op">
             <ul>
               <li><i class="fas fa-arrow-circle-right"></i> <a href="/admin/delete/user">Delete Group</a></li>
-              <li><i class="fas fa-arrow-circle-right"></i> <a href="/admin/delete/byuser">Delete By User</a></li>
 
             </ul>
           </li>

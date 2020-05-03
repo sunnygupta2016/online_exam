@@ -1,7 +1,7 @@
 module.exports = {
 	admin : {
 		pass : "admin123",
-		email : "rakib.hasan48@gmail.com",
+		email : "gupta.sunny2016@gmail.com",
 		departmentName : "CSE"
 	}
 }

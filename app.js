@@ -33,7 +33,7 @@ const testRoutes = require('./routes/tests');
 const editRoutes = require('./routes/edit');
 const reportRoutes = require('./routes/report');
 
-mongoose.connect('mongodb+srv://Sunny:Sunny@cluster0-adfq1.mongodb.net/test?retryWrites=true&w=majority', {
+mongoose.connect('mongodb+srv://Name:password@cluster0-adfq1.mongodb.net/test?retryWrites=true&w=majority', {
     useUnifiedTopology: true,
     useNewUrlParser: true})
     .then(() => console.log("Connected to Database"))

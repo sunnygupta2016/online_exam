@@ -58,7 +58,7 @@
     "shuffle": "^0.2.2",
     "shuffle-array": "^1.0.1",
     "sqlite3": "^4.1.1",
-    "underscore": "^1.9.2",
+    "underscore": "^1.12.1",
     "update": "^0.7.4",
     "verify": "^0.1.2",
     "xlsx": "^0.14.0"
